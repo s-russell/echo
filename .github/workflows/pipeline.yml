@@ -18,7 +18,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 17
@@ -29,4 +28,9 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: Capture built jar
+      uses: actions/upload-artifact@v3
+      with:
+        name: app
+        path: target/echo-0.0.1-SNAPSHOT.jar
 
